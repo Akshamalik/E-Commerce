@@ -7,14 +7,15 @@ export function fetchAllProducts() {
   });
 }
 
-export function fetchProductsByFilters(filter,sort) {
+export function fetchProductsByFilters(filter,sort,pagination) {
   // filter = {"category":["smartphone,"laptops"]}
   //sort ={_sort:"price",_roder="desc"}
+  //pagination={_page:1,limit=10}
   // TODO : on server we will support multi values
   let queryString = "";
   for (let key in filter) {
     const categoryValues=filter[key]
-    if(categoryValues.length>1){
+    if(categoryValues.length){
       const lastCategoryValue=categoryValues[categoryValues.length-1]
       queryString += `${key}=${filter[lastCategoryValue]}&`;
     }
@@ -23,6 +24,9 @@ export function fetchProductsByFilters(filter,sort) {
   for(let key in sort){
     queryString+=`${key}=${sort[key]}&`
   }
+  for(let key in pagination){
+    queryString+=`${key}=${pagination[key]}&`
+  }
 
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
@@ -30,6 +34,7 @@ export function fetchProductsByFilters(filter,sort) {
       "http://localhost:8080/products?" + queryString
     );
     const data = await response.json();
-    resolve({ data });
+    const totalItems=await response.headers.get('X-Total-Count')
+    resolve({ data:{products:data,totalItems:+totalItems} })
   });
 }
