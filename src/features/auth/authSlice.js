@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchCount } from "./authAPI";
+import { createUser } from "./authAPI";
 
 const initialState = {
-  value: 0,
+  loggedIn,
   status: "idle",
 };
 
