@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectItems } from '../cart/CartSlice';
+import { selectItems } from '../cart/cartSlice';
 
 const user = {
   name: 'Tom Cook',
@@ -20,8 +20,8 @@ const navigation = [
   { name: 'Team', href: '#', current: false },
 ];
 const userNavigation = [
-  { name: 'Your Profile', link: '/profile' },
-  { name: 'Settings', link: '/' },
+  { name: 'My Profile', link: '/profile' },
+  { name: 'My Orders', link: '/orders' },
   { name: 'Sign out', link: '/login' },
 ];
 

@@ -16,6 +16,7 @@ export const createUserAsync = createAsyncThunk(
   }
 );
 
+
 export const updateUserAsync = createAsyncThunk(
   'user/updateUser',
   async (update) => {
@@ -61,7 +62,7 @@ export const counterSlice = createSlice({
       .addCase(checkUserAsync.rejected, (state, action) => {
         state.status = 'idle';
         state.error = action.error;
-      })
+      }) 
       .addCase(updateUserAsync.pending, (state) => {
         state.status = 'loading';
       })
@@ -69,6 +70,7 @@ export const counterSlice = createSlice({
         state.status = 'idle';
         state.loggedInUser = action.payload;
       })
+      
   },
 });
 

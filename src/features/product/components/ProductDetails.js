@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
 import { RadioGroup } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllProductByIdAsync, selectProductById } from '../ProductSlice';
+import { fetchAllProductByIdAsync, selectProductById } from '../productSlice';
 import { useParams } from 'react-router-dom';
-import { addToCartAsync } from '../../cart/CartSlice';
+import { addToCartAsync } from '../../cart/cartSlice';
 import { selectLoggedInUser } from '../../auth/authSlice';
 
 // TODO: In server data we will add colors, sizes , highlights. to each product
@@ -51,7 +51,7 @@ export default function ProductDetail() {
 
   const handleCart = (e)=>{
     e.preventDefault();
-    const newItem={...product,quantity:1,user:user.id}
+    const newItem  = {...product,quantity:1,user:user.id }
     delete newItem['id'];
     dispatch(addToCartAsync(newItem)) 
   }
