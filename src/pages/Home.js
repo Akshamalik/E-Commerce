@@ -1,11 +1,14 @@
-import Navbar from "../features/navbar/Navbar";
+import { Link } from "react-router-dom";
+import NavBar from "../features/navbar/Navbar";
 import ProductList from "../features/product/components/ProductList";
 
 function Home() {
     return ( 
-    <Navbar>
-        <ProductList></ProductList>
-    </Navbar>
+        <div>
+            <NavBar>
+                <ProductList></ProductList>
+            </NavBar>
+        </div>
      );
 }
 
